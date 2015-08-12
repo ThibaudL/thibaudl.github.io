@@ -1,0 +1,67 @@
+<div ng-controller="MenuController" >
+    <md-toolbar layout="row">
+        <div class="md-toolbar-tools">
+            <h1>{{title}}</h1>
+            <span flex=""></span>
+            <md-button class="md-raised md-primary" aria-label="Menu" ng-click="loginService.logout()" ng-show="loginService.ctx.user">Logout</md-button>
+        </div>
+    </md-toolbar>
+    <section  layout="row" layout-fill flex >
+        <md-sidenav layout="column" layout-fill class="md-sidenav-left md-whiteframe-z2 " md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-show="loginService.ctx.user">
+            <md-content layout-padding  class="grey" >
+                <p hide-md show-gt-md>
+                <md-list layout="column" class="myList">
+                    <md-subheader class="md-no-sticky grey">
+                            Repositories
+                    </md-subheader>
+                    <md-list-item>
+                        <md-input-container>
+                            <label>Owner/Repo</label>
+                            <input type="test" ng-model="repository" ng-keypress="addRepository($event)">
+                        </md-input-container>
+                        <i class="material-icons" ng-click=addRepository()">search</i>
+
+                    </md-list-item>
+                    <div  ng-repeat="repository in repositoryService.ctx.repositories track by $index" >
+                        <md-list-item  class="md-active item" ng-click="loadRepository(repository)" ng-class="{'active' : repositoryService.ctx.selected == repository}" >
+                            <span><img class="mdl-button--fab"  ng-src="{{repository.owner.avatar_url}}"> &nbsp;</span>
+                            <span class="mdl-color-text--primary-dark" ng-bind="::repository.name"></span>
+                        </md-list-item>
+                        <md-list-item  class="md-active item"  ng-show="repositoryService.ctx.selected == repository" ng-class="{'active' : repositoryService.ctx.selected == repository}">
+                            <div flex></div>
+                            <div >
+                                <label md-ink-ripple >
+                                    {{repository.stargazers_count}}
+                                </label>
+                            </div>
+                            <div class="iconDiv">
+                                <i class="material-icons">stars</i>
+                            </div>
+                            <div>
+                                <label> &nbsp;
+                                    {{repository.watchers}}
+                                </label>
+                            </div>
+                            <div class="iconDiv">
+                                <i class="material-icons">remove_red_eye</i>
+                            </div>
+                            <div>
+                                <label> &nbsp;
+                                    {{issueService.ctx.issues.length}}
+                                </label>
+                            </div>
+                            <div class="iconDiv">
+                                <i class="material-icons">report_problem</i>
+                            </div>
+                        </md-list-item>
+                    </div>
+                </p>
+            </md-content>
+        </md-sidenav>
+        <div layout="column" layout-fill flex id="content">
+            <md-content flex class="md-padding" ng-view>
+
+            </md-content>
+        </div>
+    </section >
+</div>

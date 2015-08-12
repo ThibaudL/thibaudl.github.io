@@ -1,0 +1,33 @@
+<div layout="row">
+
+    <div flex="33" offset="33" >
+        <div class="mdl-card mdl-shadow--2dp demo-card-event md-whiteframe-z5">
+            <ng-form ng-submit="login.login(login.user)">
+                <div class="mdl-card__title mdl-card--expand">
+                    <div class="demo-grid-ruler mdl-grid">
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <md-input-container>
+                                <label>Username</label>
+                                <input type="text" ng-model="login.user.username">
+                            </md-input-container>
+
+                        </div>
+                        <div class="mdl-cell mdl-cell--12-col">
+                            <form action="#">
+                                <md-input-container>
+                                    <label>Password</label>
+                                    <input type="password" ng-model="login.user.password">
+                                </md-input-container>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="mdl-card__actions mdl-card--border">
+                    <md-button class="md-raised md-primary" ng-click="login.login(login.user)"> Log in </md-button>
+                    <label ng-show="loginService.ctx.error">{{login.loginService.ctx.error}}</label>
+                </div>
+            </ng-form>
+        </div>
+    </div>
+</div>

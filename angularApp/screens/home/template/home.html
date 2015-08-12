@@ -1,0 +1,65 @@
+<md-content  ng-if="repositoryService.ctx.selected">
+    <md-toolbar class="card">
+        <div class="md-toolbar-tools grey mdl-color-text--primary-dark">
+            <span flex="50">
+                <h2 class="ng-binding">
+                    <div layout="row">
+
+                        <div>
+                            <label class=""> {{repositoryService.ctx.selected.name}}</label>
+                        </div>
+                    </div>
+                </h2>
+            </span>
+            <span flex="50">
+                        <md-progress-linear class="md-warn" md-mode="determinate" value="{{progressValue}}"></md-progress-linear>
+
+            </span>
+
+
+        </div>
+
+    </md-toolbar>
+    <div layout="row" flex layout-wrap>
+        <md-card class="milestone" ng-repeat="milestone in milestoneService.ctx.milestones track by $index">
+            <md-toolbar class="card grey mdl-color-text--primary-dark">
+                <div layout="row" flex>
+                    <span flex class="card labelLine" ng-repeat="label in milestone.labels" ng-style="{'background-color': '#'+label.color}">&nbsp;</span>
+                </div>
+                <h2 class="md-title margin5">
+                    &nbsp;{{milestone.title}}
+                </h2>
+                <label class="small rightAlign" ng-show="milestone.due_on">Due on : {{milestone.due_on | date : 'dd/MM/yyyy'}}</label>
+            </md-toolbar>
+            <md-card-content>
+                <div layout="row" flex layout-wrap>
+                    <md-card class="milestone" ng-repeat="issue in issueService.ctx.issues | filter : {milestone : { id : milestone.id }}">
+                        <md-toolbar class="card grey mdl-color-text--primary-dark" layout="col">
+                            <div layout="row" flex>
+                                <span flex class="card labelLine" ng-repeat="label in issue.labels" ng-style="{'background-color': '#'+label.color}">&nbsp;</span>
+                            </div>
+                            <div layout="row">
+                                <h4 class="md-title margin5">
+                                    {{issue.title}}
+                                </h4>
+                                <span ng-show="issue.assignee.avatar_url"><img class="avatar"  src="{{issue.assignee.avatar_url}}"> &nbsp;</span>
+                            </div>
+                        </md-toolbar>
+                    </md-card>
+                </div>
+            </md-card-content>
+        </md-card>
+        <md-card class="milestone "  >
+            <md-toolbar class="card grey mdl-color-text--primary-dark">
+            <h2 class="md-title md-primary margin5">
+                &nbsp; <i class="material-icons lower paddingLeft5">add_circle</i>
+                Add new milestone
+            </h2>
+            </md-toolbar>
+            <md-card-content>
+                &nbsp;
+            </md-card-content>
+        </md-card>
+
+    </div>
+</md-content>
