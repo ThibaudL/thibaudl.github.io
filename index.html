@@ -24,7 +24,7 @@
                             <label>Owner/Repo</label>
                             <input type="test" ng-model="repository" ng-keypress="addRepository($event)">
                         </md-input-container>
-                        <i class="material-icons" ng-click=addRepository()">search</i>
+                        <i class="material-icons" ng-click="addRepository()">search</i>
 
                     </md-list-item>
                     <div  ng-repeat="repository in repositoryService.ctx.repositories track by $index" >
