@@ -25,6 +25,9 @@ md-input-container .md-input {
   border-color: rgba(0,0,0,0.32);
 }
 
+md-toolbar{
+  min-height: 10px;
+}
 
 img.mdl-button--fab{
   height: 30px;
