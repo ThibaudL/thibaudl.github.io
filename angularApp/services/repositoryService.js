@@ -22,8 +22,12 @@
                     var deferred = $q.defer();
                     $http.get(API_URL + '/repos/'+owner+'/'+repo)
                         .success(function (data, status) {
-                            repository_service.ctx.repositories.push(data);
-                            deferred.resolve(data);
+                            if(status == 200) {
+                                repository_service.ctx.repositories.push(data);
+                                deferred.resolve(data);
+                            }else{
+                                deferred.reject(data);
+                            }
                         }).error(function (data) {
                             deferred.reject(data);
                         });

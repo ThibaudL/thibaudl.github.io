@@ -1,6 +1,7 @@
 (function() {
-    angular.module('loginServiceModule', [])
-        .service('loginService', ['$http', '$q', 'API_URL', '$location', function ($http, $q, API_URL, $location) {
+    angular.module('loginServiceModule', ['repositoryServiceModule','issueServiceModule','milestoneServiceModule','labelServiceModule'])
+        .service('loginService', ['$http', '$q', 'API_URL', '$location','repositoryService','milestoneService','issueService','labelService',
+            function ($http, $q, API_URL, $location,repositoryService,milestoneService,issueService,labelService) {
 
             var login_service = {
                 ctx: {
@@ -32,7 +33,14 @@
                     delete localStorage.auth;
                     delete localStorage.username;
                     delete login_service.ctx.user;
-                    $location.path('/login');
+                    repositoryService.ctx.repositories = [];
+                    repositoryService.ctx.selected = null;
+                    issueService.ctx.issues = [];
+                    issueService.ctx.selected = null;
+                    milestoneService.ctx.milestones = [];
+                    milestoneService.ctx.selected = null;
+                    labelService.ctx.labels = [];
+                    labelService.ctx.selected = null;
                 },
                 initIfConnected : function(){
                     var deferred = $q.defer();

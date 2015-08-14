@@ -25,4 +25,23 @@ menuControllerModule.controller('MenuController',[ '$scope','$mdSidenav','loginS
         }
     }
 
+    $scope.user = {
+        username : "",
+        password : ""
+    };
+
+    $scope.loginService.initIfConnected().then(function(){
+        repositoryService.getRepositories();
+    });
+
+    $scope.login = function(){
+        loginService.login($scope.user).then(function(){
+            repositoryService.getRepositories();
+            $scope.user = {
+                username : "",
+                password : ""
+            };
+        });
+    };
+
 }]);

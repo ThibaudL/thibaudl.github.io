@@ -29,6 +29,10 @@ md-toolbar{
   min-height: 10px;
 }
 
+.fullHeight{
+  height:100%;
+}
+
 img.mdl-button--fab{
   height: 30px;
   width: 30px;
@@ -108,4 +112,8 @@ md-card.milestone{
   background: rgba(158,158,158,.2);
   box-shadow: 0 1px 1.5px 0 rgba(0,0,0,.12),0 1px 1px 0 rgba(0,0,0,.24);  margin: 6px;
   text-align: right;
+}
+
+md-toolbar .login{
+  font-size : 13px;
 }

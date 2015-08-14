@@ -9,13 +9,13 @@ var app = angular.module('myApp', ['ngResource', 'ngRoute' ,'ngMaterial',
 ]);
 
 app.controller('myAppController', ['$scope','$location','loginService', function($scope,$location, loginService){
-	$scope.$on('$routeChangeStart', function(next, current) {
-		if(!loginService.ctx.user){
-			if($location.path() != '/login'){
-				$location.path('/login');
-			}
-		}
-	});
+	//$scope.$on('$routeChangeStart', function(next, current) {
+	//	if(!loginService.ctx.user){
+	//		if($location.path() != '/login'){
+	//			$location.path('/login');
+	//		}
+	//	}
+	//});
 }]);
 
 app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProvider) {
@@ -30,8 +30,8 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 			templateUrl : 'angularApp/screens/home/template/home.html',
 			controller : 'HomeController'
 		}).otherwise({
-		templateUrl : 'angularApp/screens/login/template/login.html',
-		controller : 'LoginController'
+			templateUrl : 'angularApp/screens/home/template/home.html',
+			controller : 'HomeController'
 	});
 } ]);
 

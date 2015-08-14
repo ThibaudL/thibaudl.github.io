@@ -8,29 +8,24 @@
 	</head>
 	<body ng-app='myApp'>
 		<div ng-controller='myAppController'>
-			<div ng-controller="MenuController" >
-    <md-toolbar layout="row">
-        <div class="md-toolbar-tools">
-            <h1>{{title}}</h1>
-            <span flex=""></span>
-            <md-button class="md-raised md-primary" aria-label="Menu" ng-click="loginService.logout()" ng-show="loginService.ctx.user">Logout</md-button>
-        </div>
-    </md-toolbar>
+		
+		<!--  MENU -->
+<div ng-controller="MenuController" layout="column" class="fullHeight">
+
     <section  layout="row" layout-fill flex >
-        <md-sidenav layout="column" layout-fill class="md-sidenav-left md-whiteframe-z2 " md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')" ng-show="loginService.ctx.user">
+        <md-sidenav layout="column" layout-fill class="md-sidenav-left md-whiteframe-z2 grey" md-component-id="left" md-is-locked-open="$mdMedia('gt-sm')">
             <md-content layout-padding  class="grey" >
                 <p hide-md show-gt-md>
                 <md-list layout="column" class="myList">
-                    <md-subheader class="md-no-sticky grey">
-                            Repositories
+                    <md-subheader class="md-no-sticky md-primary  grey"> 
+                        <label class="md-title">{{title}}</label>
                     </md-subheader>
                     <md-list-item>
                         <md-input-container>
                             <label>Owner/Repo</label>
                             <input type="test" ng-model="repository" ng-keypress="addRepository($event)">
                         </md-input-container>
-                        <i class="material-icons" ng-click="addRepository()">search</i>
-
+                        <i class="material-icons md-button" ng-click="addRepository()">search</i>
                     </md-list-item>
                     <div  ng-repeat="repository in repositoryService.ctx.repositories track by $index" >
                         <md-list-item  class="md-active item" ng-click="loadRepository(repository)" ng-class="{'active' : repositoryService.ctx.selected == repository}" >
@@ -68,13 +63,36 @@
                 </p>
             </md-content>
         </md-sidenav>
+
         <div layout="column" layout-fill flex id="content">
+            <md-toolbar layout="row">
+                <div class="md-toolbar-tools">
+
+                    <span flex=""></span>
+
+                    <md-input-container ng-show="!loginService.ctx.user">
+                        <label class="mdl-color-text--primary-contrast login">Username</label>
+                        <input class="mdl-color-text--primary-contrast login" type="text" ng-model="user.username">
+                    </md-input-container>
+                    <ng-form ng-submit="login()" ng-show="!loginService.ctx.user">
+                        <md-input-container>
+                            <label class="mdl-color-text--primary-contrast login">Password</label>
+                            <input class="mdl-color-text--primary-contrast login" type="password" ng-model="user.password">
+                        </md-input-container>
+                    </ng-form>
+                    <md-button class="md-raised md-primary" ng-click="login()" ng-show="!loginService.ctx.user"> Log in </md-button>
+                    <md-button class="md-raised md-primary" aria-label="Menu" ng-click="loginService.logout()" ng-show="loginService.ctx.user">Logout</md-button>
+                </div>
+            </md-toolbar>
             <md-content flex class="md-padding" ng-view>
 
             </md-content>
         </div>
     </section >
 </div>
+
+
+
 		</div>	
 		<script src="javascripts/material.js"></script><script src="javascripts/angular-1-4-2.min.js"></script><script src="javascripts/angular-resource-1-4-2.min.js"></script><script src="javascripts/angular-route-1-4-2.min.js"></script><script src="javascripts/angular-animate-1-4-2.min.js"></script><script src="javascripts/angular-aria-1-4-2.min.js"></script><script src="javascripts/angular-material.min.js"></script><script src="angularApp/app.js"></script><script src="angularApp/composant/menu/controller/MenuController.js"></script><script src="angularApp/screens/login/controller/LoginController.js"></script><script src="angularApp/screens/home/controller/HomeController.js"></script><script src="angularApp/services/loginService.js"></script><script src="angularApp/services/repositoryService.js"></script><script src="angularApp/services/issueService.js"></script><script src="angularApp/services/milestoneService.js"></script><script src="angularApp/services/labelService.js"></script>
 	</body>
