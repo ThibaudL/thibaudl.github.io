@@ -17,6 +17,26 @@
                             deferred.reject(data);
                         });
                     return deferred.promise;
+                },updateIssue : function(issue){
+                    var number = issue.number;
+                    var deferred = $q.defer();
+                    $http.patch(API_URL + '/repos/'+repositoryService.ctx.selected.owner.login+'/'+repositoryService.ctx.selected.name+'/issues/'+number,{
+                        "title": issue.title,
+                        "body": issue.body,
+                        "assignee": issue.assignee.login,
+                        "milestone": issue.milestone.number,
+                        "state": issue.state,
+                        "labels": issue.labels
+                    })
+                        .success(function (data, status) {
+                            var index = issueService.ctx.issues.indexOf(issue);
+                            issueService.ctx.issues[index] = data;
+                        }).error(function (data) {
+                            deferred.reject(data);
+                        });
+                    return deferred.promise;
+
+
                 }
             };
 
