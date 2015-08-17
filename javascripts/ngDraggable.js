@@ -59,6 +59,7 @@ angular.module("ngDraggable", [])
                         } else {
                             var dragHandles = element.find('[ng-drag-handle]');
                         }
+
                         if (dragHandles.length) {
                             _dragHandle = dragHandles;
                         }

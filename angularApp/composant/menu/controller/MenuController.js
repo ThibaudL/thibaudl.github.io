@@ -23,7 +23,7 @@ menuControllerModule.controller('MenuController',[ '$scope','$mdSidenav','loginS
             var owner_repo = $scope.repository.split('/');
             repositoryService.getRepository(owner_repo[0], owner_repo[1])
         }
-    }
+    };
 
     $scope.user = {
         username : "",

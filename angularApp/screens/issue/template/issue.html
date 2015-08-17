@@ -1,0 +1,31 @@
+<md-dialog aria-label="Mango (Fruit)" ng-controller="IssueController as issueCtrl">
+    <form>
+        <md-toolbar layout="column">
+            <div class="md-toolbar-tools">
+                <h2>{{issueCtrl.issueService.ctx.selected.title}}</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="answer('not applicable')">
+                    &nbsp; <i class="material-icons lower paddingLeft5" aria-label="Close dialog">close</i>
+                </md-button>
+            </div>
+            <div layout="row" flex>
+                <span flex class="card labelLine" ng-repeat="label in issueCtrl.issueService.ctx.selected.labels track by $index" ng-style="{'background-color': '#'+label.color}">&nbsp;</span>
+            </div>
+        </md-toolbar>
+        <md-dialog-content style="max-width:800px;max-height:810px; ">
+            {{issueCtrl.issueService.ctx.selected.body}}
+        </md-dialog-content>
+        <div class="md-actions" layout="row">
+            <md-button href="http://en.wikipedia.org/wiki/Mango" target="_blank" hide show-md>
+                More on Wikipedia
+            </md-button>
+            <span flex></span>
+            <md-button ng-click="answer('not useful')">
+                Not Useful
+            </md-button>
+            <md-button ng-click="answer('useful')" style="margin-right:20px;">
+                Useful
+            </md-button>
+        </div>
+    </form>
+</md-dialog>

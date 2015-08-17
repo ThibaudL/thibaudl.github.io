@@ -23,14 +23,13 @@
                     $http.patch(API_URL + '/repos/'+repositoryService.ctx.selected.owner.login+'/'+repositoryService.ctx.selected.name+'/issues/'+number,{
                         "title": issue.title,
                         "body": issue.body,
-                        "assignee": issue.assignee.login,
+                        "assignee": (issue.assignee ? issue.assignee.login : null),
                         "milestone": issue.milestone.number,
                         "state": issue.state,
                         "labels": issue.labels
-                    })
-                        .success(function (data, status) {
-                            var index = issueService.ctx.issues.indexOf(issue);
-                            issueService.ctx.issues[index] = data;
+                        }).success(function (data, status) {
+                            var index = issue_service.ctx.issues.indexOf(issue);
+                            issue_service.ctx.issues[index] = data;
                         }).error(function (data) {
                             deferred.reject(data);
                         });

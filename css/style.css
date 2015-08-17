@@ -117,3 +117,19 @@ md-card.milestone{
 md-toolbar .login{
   font-size : 13px;
 }
+
+*:focus {
+  outline:none;
+}
+
+.left{
+  float:left;
+}
+
+.clickable{
+  cursor:pointer;
+}
+.clickable:hover{
+  cursor:pointer;
+  color:#555555;
+}
