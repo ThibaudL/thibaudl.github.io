@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngResource', 'ngRoute' ,'ngMaterial',
+var app = angular.module('myApp', ['ngResource', 'ngRoute' ,'ngMaterial','ngSanitize',
 	'MenuControllerModule',
     'LoginControllerModule',
 	'HomeControllerModule',
@@ -6,7 +6,8 @@ var app = angular.module('myApp', ['ngResource', 'ngRoute' ,'ngMaterial',
 	'loginServiceModule',
 	'repositoryServiceModule',
 	'issueServiceModule',
-	'labelServiceModule'
+	'labelServiceModule',
+	'markdownServiceModule'
 ]);
 
 app.controller('myAppController', ['$scope','$location','loginService', function($scope,$location, loginService){

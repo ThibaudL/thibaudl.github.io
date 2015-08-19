@@ -4,4 +4,7 @@ issueControllerModule.controller('IssueController', [  'issueService', function(
 
     this.issueService = issueService;
 
+
+
+
 }]);
