@@ -2,7 +2,6 @@ var app = angular.module('myApp', ['ngResource', 'ngRoute' ,'ngMaterial','ngSani
 	'MenuControllerModule',
     'LoginControllerModule',
 	'HomeControllerModule',
-	'IssueControllerModule',
 	'loginServiceModule',
 	'repositoryServiceModule',
 	'issueServiceModule',

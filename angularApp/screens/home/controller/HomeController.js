@@ -1,4 +1,6 @@
-var homeControllerModule = angular.module('HomeControllerModule' ,['ngDraggable','repositoryServiceModule','issueServiceModule','milestoneServiceModule','ngSanitize','markdownServiceModule']);
+var homeControllerModule = angular.module('HomeControllerModule' ,['ngDraggable','repositoryServiceModule','issueServiceModule','milestoneServiceModule','ngSanitize','markdownServiceModule','ngMaterial']);
+
+
 
 homeControllerModule.controller('HomeController',[ '$scope','repositoryService','issueService','milestoneService','$mdDialog','$sce','markdownService',
     function($scope,repositoryService,issueService,milestoneService,$mdDialog,$sce,markdownService ){
@@ -34,6 +36,8 @@ homeControllerModule.controller('HomeController',[ '$scope','repositoryService',
             templateUrl: 'angularApp/screens/issue/template/issue.html',
             parent: angular.element(document.body),
             targetEvent: ev,
+            controller : IssueController,
+            controllerAs : 'issueCtrl',
             clickOutsideToClose:true
         })
         .then(function(answer) {
@@ -41,6 +45,18 @@ homeControllerModule.controller('HomeController',[ '$scope','repositoryService',
         }, function() {
             $scope.status = 'You cancelled the dialog.';
         });
+
+
+    };
+
+    function IssueController($scope, $mdDialog){
+
+        this.issueService = issueService;
+
+        this.answer = function(result){
+            $mdDialog.cancel();
+        }
     };
 
 }]);
+
