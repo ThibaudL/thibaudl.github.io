@@ -1,8 +1,9 @@
-var menuControllerModule = angular.module('MenuControllerModule' ,['ngMaterial', 'loginServiceModule','repositoryServiceModule','issueServiceModule','milestoneServiceModule']);
+var menuControllerModule = angular.module('MenuControllerModule' ,['ngMaterial', 'loginServiceModule','repositoryServiceModule','issueServiceModule','milestoneServiceModule','logoutServiceModule']);
 
-menuControllerModule.controller('MenuController',[ '$scope','$mdSidenav','loginService','repositoryService','issueService','milestoneService',  function($scope , $mdSidenav, loginService,repositoryService,issueService,milestoneService){
+menuControllerModule.controller('MenuController',[ '$scope','$mdSidenav','loginService','logoutService','repositoryService','issueService','milestoneService',  function($scope , $mdSidenav, loginService,logoutService,repositoryService,issueService,milestoneService){
     $scope.title = "Github Project";
     $scope.loginService = loginService;
+    $scope.logoutService = logoutService;
     $scope.repositoryService = repositoryService;
     $scope.issueService = issueService;
 
