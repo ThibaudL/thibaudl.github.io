@@ -6,7 +6,9 @@ var app = angular.module('myApp', ['ngResource', 'ngRoute' ,'ngMaterial','ngSani
 	'repositoryServiceModule',
 	'issueServiceModule',
 	'labelServiceModule',
-	'markdownServiceModule'
+	'markdownServiceModule',
+	'commentServiceModule',
+	'colorServiceModule'
 ]);
 
 app.controller('myAppController', ['$scope','$location','loginService', function($scope,$location, loginService){
@@ -22,6 +24,11 @@ app.controller('myAppController', ['$scope','$location','loginService', function
 app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProvider) {
 
 	$httpProvider.interceptors.push('APIInterceptor');
+	//initialize get if not there
+	if (!$httpProvider.defaults.headers.get) {
+		$httpProvider.defaults.headers.get = {};
+	}
+	$httpProvider.defaults.headers.get['If-Modified-Since'] = 'Mon, 26 Jul 1997 05:00:00 GMT';
 
 	$routeProvider
 		.when('/login', {
@@ -37,6 +44,7 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 } ]);
 
 app.config(function($mdThemingProvider) {
+
 	var myRed = $mdThemingProvider.extendPalette('red', {
 
 	});
@@ -72,3 +80,4 @@ app.service('APIInterceptor', [function() {
 		return response;
 	};
 }]);
+

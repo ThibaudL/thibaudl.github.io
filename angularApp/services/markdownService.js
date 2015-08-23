@@ -10,7 +10,7 @@
                         {
                             'text' : text,
                             'mode' : 'gfm',
-                            'context' : repositoryService.ctx.selected.name+'/'+repositoryService.ctx.selected.owner.login
+                            'context' : repositoryService.ctx.selected.owner.login+'/'+repositoryService.ctx.selected.name
                         }
                     )
                     .success(function (data, status) {

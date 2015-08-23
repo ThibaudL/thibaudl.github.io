@@ -30,7 +30,8 @@
                         }).success(function (data, status) {
                             var index = issue_service.ctx.issues.indexOf(issue);
                             issue_service.ctx.issues[index] = data;
-                        }).error(function (data) {
+                            deferred.resolve(data);
+                    }).error(function (data) {
                             deferred.reject(data);
                         });
                     return deferred.promise;

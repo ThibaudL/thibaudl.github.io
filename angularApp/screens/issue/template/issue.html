@@ -2,25 +2,60 @@
     <form>
         <md-toolbar layout="column">
             <div class="md-toolbar-tools">
+                &nbsp; <i class="material-icons  left margin5 clickable"  ng-click="issueCtrl.editMode = !issueCtrl.editMode;" ng-show="issueCtrl.repositoryService.ctx.selected.permissions.push">create</i>
                 <h2>{{issueCtrl.issueService.ctx.selected.title}}</h2>
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="issueCtrl.answer('cancel')">
-                    &nbsp; <i class="material-icons lower paddingLeft5" aria-label="Close dialog">close</i>
+                    &nbsp; <i class="material-icons lower paddingLeft5 clickable" aria-label="Close dialog">close</i>
                 </md-button>
             </div>
             <div layout="row" flex>
-                <span flex class="card labelLine" ng-repeat="label in issueCtrl.issueService.ctx.selected.labels track by $index" ng-style="{'background-color': '#'+label.color}">&nbsp;</span>
+                <span flex class="card labelLine" ng-repeat="label in issueCtrl.issueService.ctx.selected.labels track by $index" ng-style="{'background-color': '#'+label.color}">
+                    &nbsp;
+                    <md-tooltip>{{label.name}}</md-tooltip>
+                </span>
             </div>
         </md-toolbar>
-        <md-dialog-content style="max-width:800px;max-height:810px; " >
-            <div ng-bind-html="issueCtrl.issueService.ctx.selected.htmlBody" >
+        <md-dialog-content style="max-width:800px;max-height:810px; " layout="column" flex >
+            <div ng-hide="issueCtrl.editMode" ng-bind-html="issueCtrl.issueService.ctx.selected.htmlBody" >
 
             </div>
+            <div ng-show="issueCtrl.editMode">
+                <md-input-container flex>
+                    <label>Body</label>
+
+                    <textarea md-dynamic-height ng-model="issueCtrl.issueService.ctx.selected.body" columns="10" ></textarea>
+                </md-input-container>
+            </div>
+            <md-card ng-show="issueCtrl.showComments" class="milestone" ng-repeat="comment in issueCtrl.commentService.ctx.comments track by $index" >
+                <md-toolbar class="card grey mdl-color-text--primary-dark" layout="col">
+                    <div layout="row">
+                        <span ng-show="comment.user.avatar_url" class="left"><img class="avatar"  src="{{comment.user.avatar_url}}"> &nbsp;</span>
+
+                        <h4 class="md-title margin5">
+                            {{comment.user.login}}
+                        </h4>
+                    </div>
+                </md-toolbar>
+                <md-card-content>
+                    <div ng-bind-html="comment.htmlBody" >
+
+                    </div>
+                </md-card-content>
+            </md-card>
         </md-dialog-content>
         <div class="md-actions" layout="row">
             <span flex></span>
+
+            <md-button class="md-raised" ng-click="issueCtrl.showComments = !issueCtrl.showComments" style="margin-right:20px;">
+                Comments ({{issueCtrl.issueService.ctx.selected.comments}})
+            </md-button>
+
             <md-button class="md-raised" ng-click="issueCtrl.answer('cancel')" style="margin-right:20px;">
-                Cancel
+                Close
+            </md-button>
+            <md-button ng-show="issueCtrl.editMode" class="md-raised" ng-click="issueCtrl.updateIssue();issueCtrl.editMode = false;" style="margin-right:20px;">
+                Save
             </md-button>
         </div>
     </form>
