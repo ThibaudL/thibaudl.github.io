@@ -1,4 +1,4 @@
-var app = angular.module('myApp', ['ngResource', 'ngRoute' ,'ngMaterial','ngSanitize',
+var app = angular.module('myApp', ['ngResource', 'ngRoute' ,'ngMaterial','ngSanitize','angular-loading-bar',
 	'MenuControllerModule',
 	'LoginControllerModule',
 	'HomeControllerModule',
@@ -80,5 +80,10 @@ app.service('APIInterceptor', [function() {
 	service.responseError = function(response) {
 		return response;
 	};
+}]);
+
+app.config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
+	cfpLoadingBarProvider.includeSpinner = false;
+
 }]);
 

@@ -9,7 +9,7 @@
                 },
                 getIssues: function () {
                     var deferred = $q.defer();
-                    $http.get(API_URL + '/repos/'+repositoryService.ctx.selected.owner.login+'/'+repositoryService.ctx.selected.name+'/issues',{'state' : 'all'})
+                    $http.get(API_URL + '/repos/'+repositoryService.ctx.selected.owner.login+'/'+repositoryService.ctx.selected.name+'/issues',{params:{state : 'all',sort : 'created'}})
                         .success(function (data, status) {
                                 issue_service.ctx.issues = data;
                                 deferred.resolve(data);

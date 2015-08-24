@@ -133,3 +133,18 @@ md-toolbar .login{
   cursor:pointer;
   color:#555555;
 }
+
+.state{
+  position: absolute;
+  right: 0px;
+  height: 100%;
+  top:1px;
+}
+
+.state.open{
+  background-color: forestgreen;
+}
+
+.state.closed{
+  background-color: darkred;
+}

@@ -3,7 +3,8 @@
         <md-toolbar layout="column">
             <div class="md-toolbar-tools">
                 &nbsp; <i class="material-icons  left margin5 clickable"  ng-click="issueCtrl.editMode = !issueCtrl.editMode;" ng-show="issueCtrl.repositoryService.ctx.selected.permissions.push">create</i>
-                <h2>{{issueCtrl.issueService.ctx.selected.title}}</h2>
+                <h2 >{{issueCtrl.issueService.ctx.selected.title}}</h2>
+
                 <span flex></span>
                 <md-button class="md-icon-button" ng-click="issueCtrl.answer('cancel')">
                     &nbsp; <i class="material-icons lower paddingLeft5 clickable" aria-label="Close dialog">close</i>
@@ -21,6 +22,12 @@
 
             </div>
             <div ng-show="issueCtrl.editMode">
+                <md-input-container flex >
+                    <label  >Title</label>
+
+                    <input  height ng-model="issueCtrl.issueService.ctx.selected.title" type="text" >
+                </md-input-container>
+
                 <md-input-container flex>
                     <label>Body</label>
 
@@ -52,7 +59,7 @@
             </md-button>
 
             <md-button class="md-raised" ng-click="issueCtrl.answer('cancel')" style="margin-right:20px;">
-                Close
+                Cancel
             </md-button>
             <md-button ng-show="issueCtrl.editMode" class="md-raised" ng-click="issueCtrl.updateIssue();issueCtrl.editMode = false;" style="margin-right:20px;">
                 Save
