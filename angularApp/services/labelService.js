@@ -11,7 +11,18 @@
                     var deferred = $q.defer();
                     $http.get(milestone.labels_url)
                         .success(function (data, status) {
-                                deferred.resolve(data);
+                            deferred.resolve(data);
+                        }).error(function (data) {
+                            deferred.reject(data);
+                        });
+                    return deferred.promise;
+                },
+                getRepositoryLabels: function (repository) {
+                    var deferred = $q.defer();
+                    $http.get(repository.labels_url.replace('{/name}',''))
+                        .success(function (data, status) {
+                            label_service.ctx.labels = data;
+                            deferred.resolve(data);
                         }).error(function (data) {
                             deferred.reject(data);
                         });

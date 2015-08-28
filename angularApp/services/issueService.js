@@ -41,8 +41,21 @@
                             deferred.reject(data);
                         });
                     return deferred.promise;
-
-
+                },createIssue : function(issue){
+                    return $http.post(API_URL + '/repos/'+repositoryService.ctx.selected.owner.login+'/'+repositoryService.ctx.selected.name+'/issues',{
+                        "title": issue.title,
+                        "body": issue.body,
+                        "assignee": (issue.assignee ? issue.assignee.login : null),
+                        "milestone": issue.milestone.number,
+                        "state": issue.state,
+                        "labels": issue.labels
+                    }).success(function (data, status) {
+                        issue_service.ctx.issues.push(data);
+                        issue_service.ctx.selected = data;
+                        return data;
+                    }).error(function (data) {
+                        return data;
+                    });
                 },
                 formatIssues : function(){
 

@@ -1,4 +1,4 @@
-<md-content  ng-if="repositoryService.ctx.selected">
+<md-content  ng-if="repositoryService.ctx.selected" aria-label="home">
     <md-toolbar class="card">
         <div class="md-toolbar-tools grey mdl-color-text--primary-dark">
             <span flex="50">
@@ -21,7 +21,7 @@
 
     </md-toolbar>
     <div layout="row" flex layout-wrap ng-click="click($event)">
-        <md-card class="milestone" ng-repeat="milestone in milestoneService.ctx.milestones track by $index"  ng-drop="true" ng-drop-success="onDropComplete($data,$event,milestone)" >
+        <md-card class="milestone" ng-repeat="milestone in milestoneService.ctx.milestones track by $index"  ng-drop="true" ng-drop-success="onDropComplete($data,$event,milestone)" aria-label="content">
             <md-toolbar class="card grey mdl-color-text--primary-dark">
                 <div layout="row" flex>
                     <span flex class="card labelLine" ng-repeat="label in milestone.labels" ng-style="{'background-color': '#'+label.color}">
@@ -31,6 +31,7 @@
                 </div>
                 <h2 class="md-title margin5" >
                     &nbsp;{{milestone.title}}
+                    &nbsp; <i class="material-icons lower right clickable paddingLeft5" ng-click="newIssue($event,milestone)" ng-show="repositoryService.ctx.selected.permissions.push">add_circle</i>
                 </h2>
                 <label class="small rightAlign" ng-show="milestone.due_on">Due on : {{milestone.due_on | date : 'dd/MM/yyyy'}}</label>
             </md-toolbar>
@@ -56,7 +57,9 @@
 
                                 </div>
                             </div>
-                            <span class="state " ng-class="issue.state"> &nbsp;</span>
+                            <span class="state" ng-class="issue.state"> &nbsp;
+                                <md-tooltip>{{issue.state}}</md-tooltip>
+                            </span>
 
                         </md-toolbar>
                         <md-card-content layout="column" ng-show="issue.checkboxes.length >0">

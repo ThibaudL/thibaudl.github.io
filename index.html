@@ -66,20 +66,22 @@
         </md-sidenav>
 
         <div layout="column" layout-fill flex id="content">
-            <md-toolbar layout="row">
+            <md-toolbar layout="row" class="top">
                 <div class="md-toolbar-tools">
 
                     <span flex=""></span>
 
-                    <md-input-container ng-show="!loginService.ctx.user">
-                        <label class="mdl-color-text--primary-contrast login">Username</label>
-                        <input class="mdl-color-text--primary-contrast login" type="text" ng-model="user.username">
-                    </md-input-container>
-                    <ng-form ng-submit="login()" ng-show="!loginService.ctx.user">
-                        <md-input-container>
-                            <label class="mdl-color-text--primary-contrast login">Password</label>
-                            <input class="mdl-color-text--primary-contrast login" type="password" ng-model="user.password">
+                    <ng-form ng-submit="login()" ng-show="!loginService.ctx.user" layout="row">
+                        <md-input-container ng-show="!loginService.ctx.user">
+                            <label class="mdl-color-text--primary-contrast login">Username</label>
+                            <input class="mdl-color-text--primary-contrast login" type="text" ng-model="user.username">
                         </md-input-container>
+                        <form action="#">
+                            <md-input-container>
+                                <label class="mdl-color-text--primary-contrast login">Password</label>
+                                <input class="mdl-color-text--primary-contrast login" type="password" ng-model="user.password">
+                            </md-input-container>
+                        </form>
                     </ng-form>
                     <md-button class="md-raised md-primary" ng-click="login()" ng-show="!loginService.ctx.user"> Log in </md-button>
                     <md-button class="md-raised md-primary" aria-label="Menu" ng-click="loginService.logout()" ng-show="loginService.ctx.user">Logout</md-button>

@@ -16,7 +16,7 @@
                         <i class="material-icons md-button" ng-click="addRepository()">search</i>
                     </md-list-item>
                     <div  ng-repeat="repository in repositoryService.ctx.repositories track by $index" >
-                        <md-list-item  class="md-active item" ng-click="loadRepository(repository)" ng-class="{'active' : repositoryService.ctx.selected == repository}" >
+                        <md-list-item aria-label="menuItem" class="md-active item" ng-click="loadRepository(repository)" ng-class="{'active' : repositoryService.ctx.selected == repository}" >
                             <span><img class="mdl-button--fab"  ng-src="{{repository.owner.avatar_url}}"> &nbsp;</span>
                             <span class="mdl-color-text--primary-dark" ng-bind="::repository.name"></span>
                         </md-list-item>
@@ -53,22 +53,23 @@
         </md-sidenav>
 
         <div layout="column" layout-fill flex id="content">
-            <md-toolbar layout="row">
+            <md-toolbar layout="row" class="top">
                 <div class="md-toolbar-tools">
 
                     <span flex=""></span>
-
-                    <md-input-container ng-show="!loginService.ctx.user">
-                        <label class="mdl-color-text--primary-contrast login">Username</label>
-                        <input class="mdl-color-text--primary-contrast login" type="text" ng-model="user.username">
-                    </md-input-container>
-                    <ng-form ng-submit="login()" ng-show="!loginService.ctx.user">
-                        <md-input-container>
-                            <label class="mdl-color-text--primary-contrast login">Password</label>
-                            <input class="mdl-color-text--primary-contrast login" type="password" ng-model="user.password">
+                    <ng-form ng-submit="login()" ng-show="!loginService.ctx.user" layout="row">
+                        <md-input-container ng-show="!loginService.ctx.user">
+                            <label class="mdl-color-text--primary-contrast login">Username</label>
+                            <input class="mdl-color-text--primary-contrast login" type="text" ng-model="user.username">
                         </md-input-container>
+                        <form action="#">
+                            <md-input-container>
+                                <label class="mdl-color-text--primary-contrast login">Password</label>
+                                <input class="mdl-color-text--primary-contrast login" type="password" ng-model="user.password">
+                            </md-input-container>
+                        </form>
                     </ng-form>
-                    <md-button class="md-raised md-primary" ng-click="login()" ng-show="!loginService.ctx.user"> Log in </md-button>
+                    <md-button type="submit" class="md-raised md-primary" ng-click="login()" ng-show="!loginService.ctx.user"> Log in </md-button>
                     <md-button class="md-raised md-primary" aria-label="Menu" ng-click="logoutService.logout()" ng-show="loginService.ctx.user">Logout</md-button>
                 </div>
             </md-toolbar>

@@ -1,4 +1,4 @@
-<md-dialog aria-label="Mango (Fruit)">
+<md-dialog aria-label="Issue">
     <form>
         <md-toolbar layout="column">
             <div class="md-toolbar-tools">
@@ -33,6 +33,25 @@
 
                     <textarea md-dynamic-height ng-model="issueCtrl.issueService.ctx.selected.body" columns="10" ></textarea>
                 </md-input-container>
+                <md-chips ng-model="issueCtrl.issueService.ctx.selected.labels" md-on-append="issueCtrl.append()" md-autocomplete-snap="true" md-require-match="true">
+                    <md-autocomplete
+                            md-selected-item="issueCtrl.selectedItem"
+                            md-search-text="issueCtrl.searchText"
+                            md-items="label in issueCtrl.querySearch(issueCtrl.searchText)"
+                            md-item-text="label"
+                            md-search-text-change="null"
+                            md-selected-item-change="issueCtrl.selectItem()"
+                            placeholder="Add a label">
+                        <span class="labelChip" ng-style="{'background-color': '#'+label.color}" md-highlight-text="issueCtrl.searchText">
+                            {{label.name}}
+                        </span>
+
+                    </md-autocomplete>
+                    <md-chip-template ng-style="{'background': '#'+$chip.color}" class="labelChip">
+                        <strong>{{$chip.name}}</strong>
+                    </md-chip-template>
+                </md-chips>
+
             </div>
             <md-card ng-show="issueCtrl.showComments" class="milestone" ng-repeat="comment in issueCtrl.commentService.ctx.comments track by $index" >
                 <md-toolbar class="card grey mdl-color-text--primary-dark" layout="col">
