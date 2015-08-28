@@ -84,7 +84,7 @@
                         </form>
                     </ng-form>
                     <md-button class="md-raised md-primary" ng-click="login()" ng-show="!loginService.ctx.user"> Log in </md-button>
-                    <md-button class="md-raised md-primary" aria-label="Menu" ng-click="loginService.logout()" ng-show="loginService.ctx.user">Logout</md-button>
+                    <md-button class="md-raised md-primary" aria-label="Menu" ng-click="logoutService.logout()" ng-show="loginService.ctx.user">Logout</md-button>
                 </div>
             </md-toolbar>
             <md-content flex class="md-padding" ng-view>
