@@ -47,11 +47,11 @@ app.config([ '$routeProvider','$httpProvider', function($routeProvider,$httpProv
 app.config(function($mdThemingProvider) {
 
 	var myRed = $mdThemingProvider.extendPalette('red', {
-
+		'default' : 'DA8518'
 	});
 
 	var myDeepOrange = $mdThemingProvider.extendPalette('deep-orange', {
-		'default' : 'FB9E26'
+		'default' : 'DA8518'
 	});
 
 	$mdThemingProvider.definePalette('my-red', myRed);
