@@ -51,7 +51,7 @@ app.config(function($mdThemingProvider) {
 	});
 
 	var myDeepOrange = $mdThemingProvider.extendPalette('deep-orange', {
-
+		'default' : 'FB9E26'
 	});
 
 	$mdThemingProvider.definePalette('my-red', myRed);
