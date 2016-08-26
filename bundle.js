@@ -57283,7 +57283,7 @@
   \********************************************************/
 /***/ function(module, exports) {
 
-	module.exports = "<section id=\"portfolio\" class=\"bg-light-gray\">\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"col-lg-12 text-center\">\r\n        <h2 class=\"section-heading\"></h2>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"container hide-for-md\">\r\n    <add-event events=\"$ctrl.events\"></add-event>\r\n  </div>\r\n  <div class=\"container\">\r\n    \r\n    <mwl-calendar\r\n        view=\"$ctrl.calendarView\"\r\n        view-date=\"$ctrl.calendarDate\"\r\n        events=\"$ctrl.events\"\r\n        view-title=\"$ctrl.calendarTitle\"\r\n        on-event-click=\"$ctrl.eventClicked(calendarEvent)\"\r\n        on-event-times-changed=\"$ctrl.calendarEvent.startsAt = calendarNewEventStart; $ctrl.calendarEvent.endsAt = calendarNewEventEnd\"\r\n        cell-is-open=\"true\">\r\n    </mwl-calendar>\r\n    \r\n  </div>\r\n  \r\n  <div class=\"row row-offcanvas row-offcanvas-left active hide-for-xs\">\r\n    <add-event events=\"$ctrl.events\"></add-event>\r\n  </div>\r\n  \r\n</section>\r\n";
+	module.exports = "<section id=\"portfolio\" class=\"bg-light-gray\">\r\n  <div class=\"container\">\r\n    <div class=\"row\">\r\n      <div class=\"col-lg-12 text-center\">\r\n        <h2 class=\"section-heading\"></h2>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <div class=\"container hide-for-md\">\r\n    <add-event events=\"$ctrl.events\"></add-event>\r\n  </div>\r\n  <div class=\"container\">\r\n    <div class=\"pull-right\">\r\n      <div class=\"btn-group\">\r\n        <label class=\"btn btn-default\" ng-click=\"$ctrl.calendarView = 'year'\" ng-class=\"{'btn-primary' : $ctrl.calendarView === 'year'}\">Year</label>\r\n        <label class=\"btn btn-default\" ng-click=\"$ctrl.calendarView = 'month'\" ng-class=\"{'btn-primary' : $ctrl.calendarView === 'month'}\">Month</label>\r\n        <label class=\"btn btn-default\" ng-click=\"$ctrl.calendarView = 'week'\" ng-class=\"{'btn-primary' : $ctrl.calendarView === 'week'}\">Week</label>\r\n        <label class=\"btn btn-default\" ng-click=\"$ctrl.calendarView = 'day'\" ng-class=\"{'btn-primary' : $ctrl.calendarView === 'day'}\">Day</label>\r\n      </div>\r\n    </div>\r\n  </div>\r\n  <br>\r\n  <div class=\"container\">\r\n    <div class=\"text-center\">\r\n      <h3>{{$ctrl.calendarTitle}}<h3>\r\n    </div>\r\n  </div>\r\n  <div class=\"container\">\r\n    \r\n    <mwl-calendar\r\n        view=\"$ctrl.calendarView\"\r\n        view-date=\"$ctrl.calendarDate\"\r\n        events=\"$ctrl.events\"\r\n        view-title=\"$ctrl.calendarTitle\"\r\n        on-event-click=\"$ctrl.eventClicked(calendarEvent)\"\r\n        on-event-times-changed=\"$ctrl.calendarEvent.startsAt = calendarNewEventStart; $ctrl.calendarEvent.endsAt = calendarNewEventEnd\"\r\n        cell-is-open=\"true\">\r\n    </mwl-calendar>\r\n    \r\n  </div>\r\n  \r\n  <div class=\"row row-offcanvas row-offcanvas-left active hide-for-xs\">\r\n    <add-event events=\"$ctrl.events\"></add-event>\r\n  </div>\r\n  \r\n</section>\r\n";
 
 /***/ },
 /* 388 */
@@ -57300,7 +57300,7 @@
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
-	var CalendarController = function CalendarController($log, $state, EventService) {
+	var CalendarController = function CalendarController($log, $state, EventService, $ocLazyLoad) {
 	  var _this = this;
 	
 	  _classCallCheck(this, CalendarController);
@@ -57388,7 +57388,7 @@
 /*!****************************************************************!*\
   !*** ./app/components/calendar/addEvent/AddEventController.js ***!
   \****************************************************************/
-/***/ function(module, exports) {
+/***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 	
@@ -57397,6 +57397,12 @@
 	});
 	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _angular = __webpack_require__(/*! angular */ 371);
+	
+	var _angular2 = _interopRequireDefault(_angular);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 	
@@ -57407,13 +57413,14 @@
 	    this.$log = $log;
 	    this.$state = $state;
 	    this.EventService = EventService;
-	
 	    this.defaultEvent = {
 	      color: {
 	        primary: '#aaaaaa'
-	      }
+	      },
+	      startsAt: new Date(),
+	      allDay: false
 	    };
-	    this.event = angular.copy(this.defaultEvent);
+	    this.event = _angular2.default.copy(this.defaultEvent);
 	  }
 	
 	  _createClass(AddEventController, [{
