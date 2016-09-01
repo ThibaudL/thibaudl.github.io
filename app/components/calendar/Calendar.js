@@ -9,6 +9,8 @@ angular.module('calendar.home', ['calendar.addevent'])
             $ctrl.calendarDate = new Date();
             $ctrl.calendarTitle = 'Elloguard events';
             
+            $ctrl.events = [];
+            
             EventService.getAll().then(function(allEvents){
                 $ctrl.events = allEvents;
             });
