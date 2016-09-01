@@ -1,4 +1,4 @@
-angular.module('calendar', ['ngAnimate', 'ngSanitize', 'ngMessageFormat', 'uirouter',
+angular.module('calendar', ['ngAnimate', 'ngSanitize', 'ngMessageFormat', 'ui.router',
               'calendar.menu', 'calendar.home', 'calendar.services', 'mwl.calendar', 'colorpicker.module'])
 .config(['$locationProvider','$stateProvider',function($locationProvider,$stateProvider){
   $stateProvider
