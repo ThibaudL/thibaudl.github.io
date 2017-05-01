@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Test horaire</title>
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,700'>
+    <link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css"/>
+    <link rel="stylesheet" href="../node_modules/angularjs-slider/dist/rzslider.css"/>
+
+</head>
+<body>
+    <horaires
+            morning-option="{
+                startHour : 09,
+                endHour : 13,
+                intervalHour : 5
+            }"
+            afternoon-option="{
+                startHour : 13,
+                endHour : 18,
+                intervalHour : 5
+            }"
+    ></horaires>
+
+    <script src="http://localhost:8080/bundle.js"></script>
+</body>
+</html>
